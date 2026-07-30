@@ -1,0 +1,58 @@
+generated: '2026-07-19'
+method: searched
+source: https://support.usekojo.com/hc/en-us/categories/34392806912403-ERP-Accounting-Integrations
+summary: >-
+  Kojo publishes no REST/GraphQL API and no OpenAPI, so there is nothing to lint
+  against web-API conformance profiles. Its machine-to-machine surface is ANSI
+  ASC X12 EDI plus scheduled file feeds, and the transaction sets it implements
+  are documented publicly in the vendor help center. Those are the standards this
+  file asserts against.
+standards:
+- id: ansi-asc-x12-edi
+  name: ANSI ASC X12 Electronic Data Interchange
+  conforms: true
+  evidence: >-
+    Kojo's Vendor Integration Portal exchanges X12 documents with vendor ERPs and
+    exposes an EDI Log of every transaction. Published transaction sets: 810
+    (Invoice), 840 (Request For Quote), 843 (Response to Request For Quote), 850
+    (Purchase Order), 855 (Purchase Order Acknowledgement). A sample 850
+    envelope published in the help center shows ISA/GS/ST segments at version
+    00401 / 004010.
+  source: https://support.usekojo.com/hc/en-us/articles/35653535248915-Vendor-Integration-Portal-EDI-Log
+  transaction_sets:
+  - id: '810'
+    name: Invoice
+  - id: '840'
+    name: Request For Quote (RFQ)
+  - id: '843'
+    name: Response to Request For Quote
+  - id: '850'
+    name: Purchase Order
+  - id: '855'
+    name: Purchase Order Acknowledgement
+- id: soc2
+  name: SOC 2
+  conforms: true
+  evidence: >-
+    Kojo states it has completed a SOC 2 audit validated by an independent CPA
+    report, made available to customers and partners on request.
+  source: https://www.usekojo.com/security
+- id: oauth2
+  name: OAuth 2.0
+  conforms: false
+  evidence: >-
+    No OAuth surface published. Vendor Portal access uses credentials issued by
+    Kojo out of band (request via vendor-integrations@usekojo.com); no
+    authorization server metadata is discoverable.
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  evidence: No OpenAPI/Swagger description is published on any Kojo host.
+- id: rfc9457
+  name: RFC 9457 Problem Details for HTTP APIs
+  conforms: false
+  evidence: Not applicable — no public HTTP API surface.
+- id: iso27001
+  name: ISO/IEC 27001
+  conforms: false
+  evidence: Not claimed on the Kojo security page as of this probe.

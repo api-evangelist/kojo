@@ -1,0 +1,12 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+source: https://www.usekojo.com/security
+url: https://www.usekojo.com/security
+certifications:
+- SOC 2
+evidence:
+- source: https://www.usekojo.com/security
+  keywords:
+  - soc 2
+  - soc2

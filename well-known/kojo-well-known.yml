@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of Kojo web + application hosts
+summary: >-
+  No /.well-known/ discovery documents are published on any Kojo host. Probed
+  the marketing host (www.usekojo.com) and the application host (kojo.app) for
+  RFC 9116 security.txt, OIDC discovery, RFC 8414 authorization-server metadata,
+  RFC 9727 api-catalog, and ai-plugin.json. Every path returned 404. This is an
+  honest empty result, recorded so re-runs can detect the day Kojo publishes one.
+hosts:
+- host: https://www.usekojo.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://kojo.app
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+notes:
+- No developer, docs, or api subdomain resolves (developer.usekojo.com,
+  docs.usekojo.com, api.usekojo.com all fail DNS).
+- The legacy corporate domain agora.systems resolves and serves a login, but
+  api.agora.systems returns 404.

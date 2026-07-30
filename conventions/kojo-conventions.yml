@@ -1,0 +1,113 @@
+generated: '2026-07-19'
+method: searched
+source: https://support.usekojo.com/hc/en-us/categories/34392806912403-ERP-Accounting-Integrations
+summary: >-
+  Kojo has no public web API, so the usual HTTP conventions (pagination, sparse
+  fields, request-id tracing, idempotency keys) do not apply. What it does have
+  is a documented, partner-gated integration contract for suppliers and for ERP
+  systems, run through the Kojo Vendor Integration Portal. This file captures
+  that contract's real semantics as published in the vendor help center.
+integration_model:
+  portal: Kojo Vendor Integration Portal
+  portal_docs: https://support.usekojo.com/hc/en-us/articles/35653301501331-Kojo-Vendor-Integration-Portal
+  audience: suppliers/distributors and contractor ERP systems
+  onboarding: >-
+    Not self-service. Integrations are vetted with the Kojo team before go-live;
+    portal access is requested from vendor-integrations@usekojo.com. There is no
+    signup flow, no API key issuance page, and no sandbox.
+  contacts:
+  - purpose: integration setup and portal access
+    email: vendor-integrations@usekojo.com
+  - purpose: integration enablement troubleshooting
+    email: vendorsupport@usekojo.com
+transports:
+- id: edi
+  name: ANSI ASC X12 EDI
+  direction: bidirectional
+  description: >-
+    Purchase orders, RFQs, quotes, acknowledgements and invoices exchanged
+    between Kojo and vendor ERPs. Version observed in published samples: 004010.
+  documents: ['810', '840', '843', '850', '855']
+- id: api
+  name: API integration
+  direction: bidirectional
+  description: >-
+    Referenced repeatedly as an alternative to EDI ("ingested into Kojo's catalog
+    via scheduled email or through API integrations"), but no endpoints, hosts,
+    authentication scheme, or schemas are published. Available only through
+    direct vendor onboarding.
+  published_spec: false
+- id: email-file-feed
+  name: Scheduled email file feed
+  direction: inbound
+  description: >-
+    Vendors automate their ERP to email catalog, price list, and inventory files
+    to per-customer and per-branch addresses generated inside Kojo.
+  rules:
+  - Each customer has a unique price-file email address (Customers tab -> Copy
+    Email Address); each branch has a unique inventory email address (Admin ->
+    Company -> Branches).
+  - The email subject and body are ignored.
+  - The email must contain exactly one attachment.
+  - The attachment must be a .csv or .txt file with consistent header rows.
+  - Column format is configured per vendor at Admin -> Setup -> Catalog & Pricing
+    (catalog/pricing) and Admin -> Setup -> Inventory (inventory).
+  - Cadence is vendor-controlled (hourly, daily, etc.).
+identifiers:
+  customer_account_number:
+    description: >-
+      Vendor-determined account number/identifier that binds a Kojo customer to
+      the vendor's ERP record. Separate incoming and outgoing values are
+      supported, and multiple outgoing account numbers may be added.
+    max_length: 15
+    source: https://support.usekojo.com/hc/en-us/articles/37103586982163-Adding-and-Editing-Customer-Account-Numbers-Identifiers
+  inventory_fields:
+    Stock: Quantity on hand at branch
+    SKU: Supplier's internal part number
+    Next Day Stock: Quantity stocked at the next closest branch or distribution center
+enablement_semantics:
+  description: >-
+    Integration activation is a two-sided handshake, not a unilateral toggle.
+  rules:
+  - Incoming integrations (receiving RFQs and POs from customers) are freely
+    enabled/disabled by the vendor at any time, with no behavior change for the
+    customer in Kojo.
+  - Outgoing integrations can only be enabled if the customer has requested that
+    integration type; the request date is shown.
+  - Outgoing integrations should only be enabled on the customer's requested
+    Target Go Live date.
+observability:
+  edi_log:
+    description: >-
+      Central log of every EDI transaction between Kojo and the vendor ERP,
+      filterable by customer, transaction type, date range, and outcome. Raw EDI
+      files are downloadable per transaction for audit and troubleshooting.
+    source: https://support.usekojo.com/hc/en-us/articles/35653535248915-Vendor-Integration-Portal-EDI-Log
+    outcomes:
+    - id: success
+      meaning: The transaction was successfully sent to or received by Kojo.
+    - id: pending
+      meaning: The transaction was sent; Kojo is awaiting confirmation of receipt.
+    - id: failed
+      meaning: >-
+        An error prevented processing. The cause is surfaced on hover of the
+        error icon on the transaction row.
+    known_errors:
+    - message: Order Not Found
+      applies_to: ['843', '855']
+      cause: >-
+        The vendor's PO number does not match the corresponding PO number in Kojo.
+not_applicable:
+  idempotency: >-
+    No public HTTP API and no documented idempotency key. Not asserted.
+  pagination: No public HTTP API surface.
+  rate_limits: None published.
+  versioning: >-
+    No API versioning policy published. The only version signal is the X12
+    envelope version (004010) in published EDI samples.
+  error_envelope: >-
+    No HTTP error envelope. Failures surface as EDI Log outcomes (see above).
+related:
+  conformance: conformance/kojo-conformance.yml
+  integrations: integrations/kojo-integrations.yml
+  security: security/kojo-domain-security.yml

@@ -1,0 +1,77 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.usekojo.com/integrations
+summary: >-
+  Kojo's published integration catalog, harvested verbatim from its sitemap and
+  integrations index. Two distinct families: ERP / project-management systems
+  used by the contractor, and material suppliers/distributors wired in through
+  the Vendor Integration Portal over EDI or file feeds. No forkable Arazzo
+  workflows are authored here because neither side publishes an OpenAPI to
+  ground verified operationIds against.
+index: https://www.usekojo.com/integrations
+families:
+- id: erp-accounting
+  name: ERP, accounting, and project management systems
+  transport: >-
+    Bidirectional sync of jobs, cost codes, POs, and invoices. Connection method
+    is not published per partner.
+  partners:
+  - name: Acumatica
+    url: https://www.usekojo.com/integrations/acumatica
+  - name: Autodesk Construction Cloud
+    url: https://www.usekojo.com/integrations/autodesk
+  - name: CMiC
+    url: https://www.usekojo.com/integrations/cmic-integration
+  - name: COINS
+    url: https://www.usekojo.com/integrations/coins
+  - name: Deltek ComputerEase
+    url: https://www.usekojo.com/integrations/computerease
+  - name: ECMS
+    url: https://www.usekojo.com/integrations/ecms-integration
+  - name: Foundation
+    url: https://www.usekojo.com/integrations/foundation
+  - name: Procore
+    url: https://www.usekojo.com/integrations/procore
+  - name: QuickBooks Online
+    url: https://www.usekojo.com/integrations/quickbooks
+  - name: QuickBooks Desktop
+    url: https://www.usekojo.com/integrations/quickbooks-desktop
+  - name: Sage 100 Contractor
+    url: https://www.usekojo.com/integrations/sage100
+  - name: Sage 300 CRE
+    url: https://www.usekojo.com/integrations/sage300
+  - name: Sage Intacct
+    url: https://www.usekojo.com/integrations/sage-intacct
+  - name: Spectrum
+    url: https://www.usekojo.com/integrations/spectrum
+  - name: Viewpoint
+    url: https://www.usekojo.com/integrations/viewpoint
+  - name: Vista
+    url: https://www.usekojo.com/integrations/vista
+- id: suppliers
+  name: Material suppliers and distributors
+  transport: >-
+    ANSI ASC X12 EDI (810/840/843/850/855), API integration, or scheduled email
+    file feeds for catalog, pricing, and inventory availability. See
+    conventions/kojo-conventions.yml.
+  partners:
+  - name: Border States
+    url: https://www.usekojo.com/integrations/border-states
+  - name: Crawford Electric Supply
+    url: https://www.usekojo.com/integrations/crawford
+  - name: Dakota Supply Group
+    url: https://www.usekojo.com/integrations/dakota-supply-group
+  - name: Graybar
+    url: https://www.usekojo.com/integrations/graybar
+  - name: Hajoca
+    url: https://www.usekojo.com/integrations/hajoca
+  - name: Mayer
+    url: https://www.usekojo.com/integrations/mayer
+  - name: Professional Contractor Supply
+    url: https://www.usekojo.com/integrations/professional-contractor-supply
+  - name: Rexel
+    url: https://www.usekojo.com/integrations/rexel
+  - name: US Electrical Services
+    url: https://www.usekojo.com/integrations/us-electrical-services
+  - name: WESCO
+    url: https://www.usekojo.com/integrations/wesco
