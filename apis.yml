@@ -1,19 +1,51 @@
 aid: kojo
 name: Kojo
-description: Kojo is a company surfaced as a portfolio company of 8vc and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Kojo (formerly Agora, kojo.app) is a construction materials management and
+  procurement platform built for specialty trade contractors — electrical,
+  mechanical, concrete, drywall, flooring, and roofing. It connects the field,
+  the purchasing team, the warehouse, the prefab shop, and accounting into a
+  single materials workflow covering requesting, sourcing, purchasing,
+  receiving, tool tracking, invoice matching, and payment. Kojo publishes no
+  self-service developer API or OpenAPI; its machine-to-machine surface is a
+  partner-gated Vendor Integration Portal that exchanges ANSI ASC X12 EDI
+  documents (810/840/843/850/855) with supplier ERPs, ingests catalog, pricing,
+  and branch inventory files over scheduled email feeds, and ships connectors
+  for sixteen ERP and project-management systems including Procore, Sage,
+  Acumatica, CMiC, Viewpoint Vista, and Autodesk Construction Cloud.
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/62729c594454f55c901fb1f2/62898aff50f59f2e5755fe30_Kojo%20Technologies.jpg
 url: https://raw.githubusercontent.com/api-evangelist/kojo/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 8vc
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: enrichment-pass-2026-07-19-no-public-api
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
+- Construction
+- Procurement
+- Materials Management
+- Supply Chain
+- Contractors
+- ERP Integration
+- EDI
+- Inventory
+- Construction Technology
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +55,36 @@ maintainers:
 common:
 - type: Website
   url: https://usekojo.com
+- type: Support
+  url: https://www.usekojo.com/support
+- type: HelpCenter
+  url: https://support.usekojo.com/hc/en-us
+- type: Blog
+  url: https://www.usekojo.com/blog
+- type: Pricing
+  url: https://www.usekojo.com/pricing
+- type: Login
+  url: https://kojo.app/login
+- type: TermsOfService
+  url: https://www.usekojo.com/terms
+- type: PrivacyPolicy
+  url: https://www.usekojo.com/privacy
+- type: Integrations
+  url: integrations/kojo-integrations.yml
+- type: Conventions
+  url: conventions/kojo-conventions.yml
+- type: Conformance
+  url: conformance/kojo-conformance.yml
+- type: Compliance
+  url: security/kojo-trust-center.yml
+- type: TrustCenter
+  url: security/kojo-trust-center.yml
+- type: DomainSecurity
+  url: security/kojo-domain-security.yml
+- type: LLMsTxt
+  url: llms/kojo-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
