@@ -13,6 +13,17 @@ description: >-
   and branch inventory files over scheduled email feeds, and ships connectors
   for sixteen ERP and project-management systems including Procore, Sage,
   Acumatica, CMiC, Viewpoint Vista, and Autodesk Construction Cloud.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
